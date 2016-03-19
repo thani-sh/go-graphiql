@@ -12,8 +12,8 @@ import (
 )
 
 func main() {
-  schema := GetGraphQLSchema()
-  http.HandleFunc("/graphql", graphiql.ServeGraphQL(schema))
+	schema := GetGraphQLSchema()
+	http.HandleFunc("/graphql", graphiql.ServeGraphQL(schema))
 	http.HandleFunc("/", graphiql.ServeGraphiQL)
 	http.ListenAndServe(":9001", nil)
 }
