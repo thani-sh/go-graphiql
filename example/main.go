@@ -32,8 +32,6 @@ func main() {
 
 func serveGraphQL(s graphql.Schema) http.HandlerFunc {
 	return func(res http.ResponseWriter, req *http.Request) {
-		defer req.Body.Close()
-
 		Err := func(errMsg string) {
 			res.WriteHeader(500)
 			res.Write([]byte(errMsg))
