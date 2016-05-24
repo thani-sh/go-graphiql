@@ -57,10 +57,8 @@ func NewClient(uri string) (c *Client, err error) {
 	pass, hasPass := u.User.Password()
 	if user != "" && hasPass && pass != "" {
 		req := http.Request{}
+		req.Header = c.Header
 		req.SetBasicAuth(user, pass)
-		for k, v := range req.Header {
-			c.Header[k] = v
-		}
 	}
 
 	u.User = nil
