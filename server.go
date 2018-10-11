@@ -1,11 +1,14 @@
 package graphiql
 
 import (
+	"fmt"
 	"net/http"
 )
 
 
-var Content = []byte(`<!DOCTYPE html>
+var (
+	Endpoint = "/graphql"
+	Content = `<!DOCTYPE html>
 <head><style>
     body {
         height: 100vh;
@@ -15,17 +18,18 @@ var Content = []byte(`<!DOCTYPE html>
     }
     </style><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/fetch/3.0.0/fetch.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/react/15.5.4/react.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/react/15.5.4/react-dom.min.js></script><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/graphiql/0.12.0/graphiql.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/graphiql/0.12.0/graphiql.min.js></script><script>
     (function() {
+		const inputPlaceholder = window.location.origin + '%s';
         var PROMPT_OPTIONS = {
             title: "GraphQL Endpoint",
             text: "Please give the GraphQL HTTP Endpoint",
             type: "input",
             showCancelButton: false,
-            inputPlaceholder: window.location.origin + '/graphql',
+            inputPlaceholder,
         };
         document.addEventListener('DOMContentLoaded', function() {
             swal(PROMPT_OPTIONS, function(endpoint) {
                 if (!endpoint) {
-                    endpoint = window.location.origin + '/graphql';
+                    endpoint = inputPlaceholder;
                 }
 
                 function fetcher(params) {
@@ -48,5 +52,5 @@ var Content = []byte(`<!DOCTYPE html>
 
 // ServeGraphiQL is a handler function for HTTP servers
 func ServeGraphiQL(res http.ResponseWriter, req *http.Request) {
-	res.Write(Content)
+	res.Write([]byte(fmt.Sprintf(Content, Endpoint)))
 }
