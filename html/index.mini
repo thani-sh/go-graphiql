@@ -1,11 +1,4 @@
-package graphiql
-
-import (
-	"net/http"
-)
-
-
-var Content = []byte(`<!DOCTYPE html>
+<!DOCTYPE html>
 <head><style>
     body {
         height: 100vh;
@@ -43,10 +36,4 @@ var Content = []byte(`<!DOCTYPE html>
             });
         });
     }());
-    </script></head> <body> </body> </html>`)
-
-
-// ServeGraphiQL is a handler function for HTTP servers
-func ServeGraphiQL(res http.ResponseWriter, req *http.Request) {
-	res.Write(Content)
-}
+    </script></head> <body> </body> </html>

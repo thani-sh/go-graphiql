@@ -6,8 +6,8 @@ import (
 	"net/http"
 
 	"github.com/graphql-go/graphql"
-	"github.com/mnmtanish/go-graphiql"
-	"github.com/mnmtanish/go-graphiql/example/types"
+	"github.com/alexsuslov/go-graphiql"
+	"github.com/alexsuslov/go-graphiql/example/types"
 )
 
 func main() {
