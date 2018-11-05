@@ -20,8 +20,8 @@ const url = "https://raw.githubusercontent.com/graphql/graphiql/master/example/i
 
 func main(){
 
-	//bytes, err := ioutil.ReadFile("html/index.html")
-	bytes, err := readFile(url)
+	bytes, err := ioutil.ReadFile("html/index.html")
+	//bytes, err := readFile(url)
 	if err != nil {
 		panic(err)
 	}
