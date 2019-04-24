@@ -41,6 +41,6 @@ func setMessage(msg string) {
 		panic("bad response")
 	}
 
-	log.Println("listening on http://localhost:9001")
+	log.Println("listening on http://localhost:9000")
 }
 
