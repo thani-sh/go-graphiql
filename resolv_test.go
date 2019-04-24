@@ -2,23 +2,23 @@ package graphiql_test
 
 import (
 	"bytes"
-	"github.com/alexsuslov/go-graphiql"
 	"log"
 	"testing"
+
+	"github.com/alexsuslov/go-graphiql"
 )
 
 func TestResolv(t *testing.T) {
 	options := graphiql.ResolverOptions{
 		Name: "user",
-		Imports:[]string{
+		Imports: []string{
 			"gitlab.42do.ru/servicechain/monitor/internal/db",
 			"gopkg.in/mgo.v2/bson",
 			"time"},
 		Fields: [][]string{
 			{"ID", "bson.ObjectId", `bson:"_id,omitempty"`},
 			{"Name", "*string", `json:"name"`},
-			{"Name", "*string", `json:"name"`},
-			{"FName",  "*string",  `json:"fullname"`},
+			{"FName", "*string", `json:"fullname"`},
 			{"Phone", "*string", `json:"phone" `},
 			{"Email", "*string", `json:"email" `},
 
