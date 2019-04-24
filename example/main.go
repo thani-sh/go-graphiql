@@ -22,11 +22,11 @@ func main() {
 
 	http.HandleFunc("/", graphiql.ServeGraphiQL)
 	http.HandleFunc("/graphql", graphiql.ServeGraphQL(schema))
-	http.ListenAndServe(":9001", nil)
+	http.ListenAndServe(":9000", nil)
 }
 
 func setMessage(msg string) {
-	c, err := graphiql.NewClient("http://localhost:9001/graphql")
+	c, err := graphiql.NewClient("http://localhost:9000/graphql")
 	if err != nil {
 		panic(err)
 	}
@@ -37,7 +37,7 @@ func setMessage(msg string) {
 		panic(err)
 	}
 
-	if string(*res.Data) != `{"setMessage":"Hello World"}` {
+	if string(*res.Data) != `{"setMessage":"Hello Hubr"}` {
 		panic("bad response")
 	}
 
