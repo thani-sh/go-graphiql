@@ -1,13 +1,12 @@
 package main
 
 import (
-	"encoding/json"
 	"log"
 	"net/http"
 
+	"github.com/alexsuslov/go-graphiql"
+	"github.com/alexsuslov/go-graphiql/example/types"
 	"github.com/graphql-go/graphql"
-	"github.com/mnmtanish/go-graphiql"
-	"github.com/mnmtanish/go-graphiql/example/types"
 )
 
 func main() {
@@ -22,12 +21,12 @@ func main() {
 	go setMessage("Hello World")
 
 	http.HandleFunc("/", graphiql.ServeGraphiQL)
-	http.HandleFunc("/graphql", serveGraphQL(schema))
-	http.ListenAndServe(":9001", nil)
+	http.HandleFunc("/graphql", graphiql.ServeGraphQL(schema))
+	http.ListenAndServe(":9000", nil)
 }
 
 func setMessage(msg string) {
-	c, err := graphiql.NewClient("http://localhost:9001/graphql")
+	c, err := graphiql.NewClient("http://localhost:9000/graphql")
 	if err != nil {
 		panic(err)
 	}
@@ -38,33 +37,10 @@ func setMessage(msg string) {
 		panic(err)
 	}
 
-	if string(*res.Data) != `{"setMessage":"Hello World"}` {
+	if string(*res.Data) != `{"setMessage":"Hello Hubr"}` {
 		panic("bad response")
 	}
 
-	log.Println("listening on http://localhost:9001")
+	log.Println("listening on http://localhost:9000")
 }
 
-func serveGraphQL(s graphql.Schema) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		sendError := func(err error) {
-			w.WriteHeader(500)
-			w.Write([]byte(err.Error()))
-		}
-
-		req := &graphiql.Request{}
-		if err := json.NewDecoder(r.Body).Decode(req); err != nil {
-			sendError(err)
-			return
-		}
-
-		res := graphql.Do(graphql.Params{
-			Schema:        s,
-			RequestString: req.Query,
-		})
-
-		if err := json.NewEncoder(w).Encode(res); err != nil {
-			sendError(err)
-		}
-	}
-}

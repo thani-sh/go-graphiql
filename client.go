@@ -20,6 +20,7 @@ func (e *GraphQLError) Error() string {
 // Request ...
 type Request struct {
 	Query string `json:"query"`
+	Variables map[string]interface{} `json:"variables"`
 }
 
 // Response ...

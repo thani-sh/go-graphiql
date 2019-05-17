@@ -1,0 +1,138 @@
+# EditorConfig is awesome: http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+###########################################################
+# common
+# Unix-style newlines with a newline ending every file
+###########################################################
+
+[*]
+charset = utf-8
+
+end_of_line = LF
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+indent_style = space
+indent_size = 4
+
+###########################################################
+; make
+###########################################################
+
+[Makefile]
+indent_style = tab
+
+[makefile]
+indent_style = tab
+
+# Matches multiple files with brace expansion notation
+# Set default charset
+[*.{js,py}]
+charset = utf-8
+indent_size = 2
+indent_style = space
+
+# 4 space indentation
+[*.py]
+indent_style = space
+indent_size = 4
+
+# Tab indentation (no size specified)
+[Makefile]
+indent_style = tab
+
+# Indentation override for all JS under lib directory
+[lib/**.js]
+indent_style = space
+indent_size = 2
+
+# Matches the exact files either package.json or .travis.yml
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2
+
+# JSON/YML
+# 2 space indentation
+[*.{json,yml}]
+indent_style = space
+indent_size = 2
+
+# Bash
+# https://google.github.io/styleguide/shell.xml#Indentation
+# 2 space indentation
+[*.sh]
+indent_style = space
+indent_size = 2
+
+# C/C++/header files
+# https://google.github.io/styleguide/cppguide.html#Spaces_vs._Tabs
+# 2 space indentation
+[*.{c,cpp,h,hpp}]
+indent_style = space
+indent_size = 2
+
+# Java
+# https://google.github.io/styleguide/javaguide.html#s4.2-block-indentation
+# https://google.github.io/styleguide/javaguide.html#s4.5.2-line-wrapping-indent
+[*.java]
+indent_style = space
+indent_size = 2
+continuation_indent_size = 4
+
+###########################################################
+; markdown
+###########################################################
+
+[*.md]
+trim_trailing_whitespace = false
+
+# Golang
+# https://golang.org/cmd/gofmt/
+# Tab indentation (no size specified)
+[*.go]
+indent_style = tab
+indent_size = 4
+
+# HTML
+# https://www.w3schools.com/html/html5_syntax.asp
+[*.html]
+# 2 space indentation
+indent_style = space
+indent_size = 2
+
+# CSS/SASS/SCSS/LESS
+# https://www.drupal.org/docs/develop/standards/css/css-formatting-guidelines#whitespace
+[*.{css,sass,scss,less}]
+# 2 space indentation
+indent_style = space
+indent_size = 2
+
+# Vue
+# https://github.com/vuejs/eslint-plugin-vue/blob/master/.editorconfig
+# 2 space indentation
+[*.vue]
+indent_style = space
+indent_size = 2
+
+# Angular
+# https://github.com/angular/angular/blob/master/.editorconfig
+# 2 space indentation
+[*.ts]
+indent_style = space
+indent_size = 2
+
+# JSX
+# https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent.md
+# 4 space indentation
+[*.jsx]
+indent_style = space
+indent_size = 4
+
+
+# SQL (MySQL) - https://www.mysql.com/
+[*.sql]
+indent_style = space
+indent_size = 2
